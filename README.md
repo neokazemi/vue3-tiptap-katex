@@ -104,10 +104,10 @@ All options are optional:
 | onResizeEnd     | Function | null    | Gets called after resizing image                                                                    |
 
 
-####uploadServer example:
+#### uploadServer example:
     { url: upload.com/image, headers: { Authentication: "token" }}
 
-####onResizeEnd:
+#### onResizeEnd:
 Arguments: url, width, height
 Return value: url
 

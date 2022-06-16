@@ -96,10 +96,6 @@
       SlotFloatingMenu
     },
     props: {
-      uploadServer: {
-        type: Object,
-        default: () => {}
-      },
       loading: {
         type: Boolean,
         required: false,
@@ -150,13 +146,13 @@
     },
     created () {
       this.newModelValue = this.convertToTiptap(this.modelValue)
-      this.$emit('update:modelValue', this.convertToTiptap(this.modelValue))
+      this.$emit('update:modelValue', this.newModelValue)
     },
     mounted () {
       let vueTiptapKatexInstance = this
       this.editor = new Editor({
         content: this.modelValue,
-        parseOptions: {
+        parseOptions: { //prose-mirror-options
           preserveWhitespace: true
         },
         extensions: [
@@ -198,7 +194,7 @@
         // triggered on every change
         onUpdate({ editor }) {
           vueTiptapKatexInstance.$emit('update:modelValue', editor.getHTML())
-          vueTiptapKatexInstance.newModelValue = vueTiptapKatexInstance.convertToTiptap(editor.getHTML())
+          vueTiptapKatexInstance.newModelValue = editor.getHTML()
         },
         editorProps: {
           handleKeyDown: (view, event) => {
